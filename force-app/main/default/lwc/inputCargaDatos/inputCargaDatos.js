@@ -6,14 +6,24 @@ export default class InputCargaDatos extends LightningElement {
   
 
     @api nombre;
+    @api apellido;
+    data = {name: this.nombre , lastname: this.apellido};
  
     nombreOnChange(event) {
-        this.nombre = event.target.value;
+
+        if (event.target.name == 'input1'){
+            this.nombre = event.target.value;
+
+        } else if (event.target.name == 'input2'){
+
+            this.apellido = event.target.value;
+        }
+        
     }
 
 
     guardarNombre() {
-        const nombreGuardado = new CustomEvent('pasarnombre', { detail : this.nombre });
+        const nombreGuardado = new CustomEvent('pasarnombre', { detail : {name: this.nombre , lastname: this.apellido} });
         this.dispatchEvent(nombreGuardado)
     }
 

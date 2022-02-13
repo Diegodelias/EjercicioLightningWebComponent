@@ -4,7 +4,7 @@
         
             <div class="slds-var-m-around_medium">
                
-                    <lightning-layout
+                    <!-- <lightning-layout
                         
                         class="slds-var-m-vertical_x-small"
                     >
@@ -12,7 +12,17 @@
                             Pepe Harcoded
                         </lightning-layout-item>
                         
-                    </lightning-layout>
+                    </lightning-layout> -->
+
+
+                    <template if:true={contacts.data}>
+                        
+                        <template for:each={contacts.data} for:item="contacto">
+                            <p key={contacto.Id}>{contacto.Name}</p>
+
+                        </template>
+
+                    </template>
                 
             </div>
         

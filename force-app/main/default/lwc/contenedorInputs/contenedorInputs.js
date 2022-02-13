@@ -21,7 +21,7 @@ filaVacia = [];
         ];
         
         reloadListadoNombres(event){
-            console.log(event.detail);
+            console.log('evetn detail' + (event.detail.name));
             const objChild = this.template.querySelector('c-listado-nombres-input');
             objChild.agregarContactoLista(event.detail);
         }
@@ -30,10 +30,12 @@ filaVacia = [];
              guardarNombreNuevo(event){
                 const nombresObj = {}
                 nombresObj["Id"] = Date.now().toString();
-                nombresObj["Name"]= event.detail;
+                nombresObj["Name"]= event.detail.name;
+                nombresObj["LastName"]= event.detail.lastname;
+
                 this.contacts.push(nombresObj)
                 this.contacts.forEach((element,index,array)=>{
-                ;
+                
             });
 
                
@@ -48,7 +50,7 @@ filaVacia = [];
                         let conData = new Object();
                         console.log("primer nombre lapqtp" + contacts[i].Name);
                         conData.FirstName = contacts[i].Name;
-                        conData.LastName = 'garompa';
+                        conData.LastName = contacts[i].LastName;;
                         console.log(conData);
                         contactDataList.push(conData);
                         console.log("primer nombre cargo?" + conData.FirstName);

@@ -7,10 +7,16 @@
         >
             <lightning-layout-item flexibility="grow">
                 <lightning-input
-                    
+                name="input1"
+                onchange={nombreOnChange}
+                label="Nombre"
+                value={nombre}
+            ></lightning-input>
+                <lightning-input
+                    name="input2"
                     onchange={nombreOnChange}
-                    label="Agregar"
-                    value={nombre}
+                    label="Apellido"
+                    value={apellido}
                 ></lightning-input>
             </lightning-layout-item>
             <lightning-layout-item class="slds-var-p-left_xx-small">
