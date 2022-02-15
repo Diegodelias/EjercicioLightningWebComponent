@@ -1,13 +1,18 @@
-import { LightningElement , track } from 'lwc';
+import { LightningElement , track, wire } from 'lwc';
 import InsertContact from '@salesforce/apex/ContactController.InsertContact';
 import FNAME_FIELD from '@salesforce/schema/Contact.FirstName';
 import LNAME_FIELD from '@salesforce/schema/Contact.LastName';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { publish, MessageContext} from 'lightning/messageService';
+import PASAR_DATA_CHANNEL from '@salesforce/messageChannel/Pasar_Data__c';
 export default class ContenedorInputs extends LightningElement {
 
+    @wire(MessageContext) MessageContext;
 
 fname = FNAME_FIELD;
 lname =LNAME_FIELD;
+
+recargarListadoPrincipal = true;
 
 rec= {
     FNAME:this.fname,
@@ -61,16 +66,19 @@ filaVacia = [];
                         this.dispatchEvent(
                             new ShowToastEvent({
                                 title: 'Success',
-                                message: 'Contact created',
+                                message: 'Contact creado con exito',
                                 variant: 'success',
                             }),
                         );
                         this.contacts = [];
+                        const payload = { recargarListadoPrincipal: this.recargarListadoPrincipal };
+
+                        publish(this.MessageContext, PASAR_DATA_CHANNEL , payload);
                     })
                     .catch((error) => {
                         this.dispatchEvent(
                             new ShowToastEvent({
-                                title: 'Error creating record',
+                                title: 'Error al crear contacto',
                                 message: error.body.message,
                                 variant: 'error',
                             }),
@@ -85,6 +93,12 @@ filaVacia = [];
                 }else{
                     window.alert('Please select any row to insert data.');
                 }
+
+
+
+                //
+
+               
             }
           
            

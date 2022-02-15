@@ -25,6 +25,8 @@ export default class InputCargaDatos extends LightningElement {
     guardarNombre() {
         const nombreGuardado = new CustomEvent('pasarnombre', { detail : {name: this.nombre , lastname: this.apellido} });
         this.dispatchEvent(nombreGuardado)
+        this.template.querySelector('lightning-input[data-name="input1"]').value = null; 
+        this.template.querySelector('lightning-input[data-name="input2"]').value = null; 
     }
 
     

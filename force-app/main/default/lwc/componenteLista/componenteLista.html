@@ -4,20 +4,12 @@
         
             <div class="slds-var-m-around_medium">
                
-                    <!-- <lightning-layout
-                        
-                        class="slds-var-m-vertical_x-small"
-                    >
-                        <lightning-layout-item flexibility="grow">
-                            Pepe Harcoded
-                        </lightning-layout-item>
-                        
-                    </lightning-layout> -->
+               
 
 
-                    <template if:true={contacts.data}>
+                    <template if:true={wiredcontactResutados.data}>
                         
-                        <template for:each={contacts.data} for:item="contacto">
+                        <template for:each={wiredcontactResutados.data} for:item="contacto">
                             <p key={contacto.Id}>{contacto.Name}</p>
 
                         </template>
